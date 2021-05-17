@@ -13,7 +13,6 @@ public class CameraBehaviour : MonoBehaviour
     void Start()
     {
         CameraTransform = GetComponent<Transform>();
-        PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
