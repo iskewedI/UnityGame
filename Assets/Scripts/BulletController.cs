@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
+using System.Threading.Tasks;
+using System;
 
 public class BulletController : MonoBehaviour
 {
@@ -10,6 +9,7 @@ public class BulletController : MonoBehaviour
 
     private Rigidbody rb;
     private MeshRenderer renderer;
+    private GameObject Player;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +36,14 @@ public class BulletController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy") && renderer.enabled)
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(new Vector2(0, 5), ForceMode.Impulse);
+
+            //Invokes the function passed as a string after the given amount of seconds
+            Invoke("BulletComeback", 1);
         }
+    }
+
+    private void BulletComeback()
+    {
+        //TODO: Make the bullet teleport back to the player
     }
 }
