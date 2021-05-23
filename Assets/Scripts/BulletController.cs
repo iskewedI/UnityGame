@@ -6,12 +6,13 @@ public class BulletController : MonoBehaviour
 {
     [SerializeField]
     private float Velocity = 100f;
+    [SerializeField]
+    private Transform Player;
 
     private Rigidbody rb;
     private MeshRenderer renderer;
-    private GameObject Player;
+    private readonly Vector3 offset = new Vector3(0, -0.2319999f, 1.07f);
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -20,15 +21,14 @@ public class BulletController : MonoBehaviour
         renderer.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {   
-    }
-
     public void Shoot()
     {
         renderer.enabled = true;
+
         rb.AddForce(new Vector3(0, 0, Velocity), ForceMode.Impulse);
+
+        //Invokes the function passed as a string after the given amount of seconds
+        Invoke("BulletComeback", 1);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -36,14 +36,16 @@ public class BulletController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy") && renderer.enabled)
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(new Vector2(0, 5), ForceMode.Impulse);
-
-            //Invokes the function passed as a string after the given amount of seconds
-            Invoke("BulletComeback", 1);
         }
     }
 
     private void BulletComeback()
     {
-        //TODO: Make the bullet teleport back to the player
+        renderer.enabled = false;
+
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        transform.position = Player.position + offset;
     }
 }
