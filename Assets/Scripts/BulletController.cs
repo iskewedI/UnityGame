@@ -22,8 +22,7 @@ public class BulletController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {   
     }
 
     public void Shoot()
@@ -34,7 +33,7 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") && renderer.enabled)
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(new Vector2(0, 5), ForceMode.Impulse);
         }
