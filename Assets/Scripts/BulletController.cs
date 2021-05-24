@@ -9,6 +9,11 @@ public class BulletController : MonoBehaviour
     [SerializeField]
     private Transform Player;
 
+    [SerializeField]
+    private EnemyController Enemy;
+    [SerializeField]
+    private float damage = 5f;
+
     private Rigidbody rb;
     private MeshRenderer renderer;
     private readonly Vector3 offset = new Vector3(0, -0.2319999f, 1.07f);
@@ -36,6 +41,7 @@ public class BulletController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy") && renderer.enabled)
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(new Vector2(0, 5), ForceMode.Impulse);
+            Enemy.LoseLife(damage);
         }
     }
 
