@@ -24,9 +24,10 @@ public class BulletController : MonoBehaviour
         renderer.enabled = false;
     }
 
-    public void Shoot()
+    public void Shoot(Quaternion rotation)
     {
         renderer.enabled = true;
+        transform.rotation = rotation;
 
         rb.AddForce(new Vector3(0, 0, Velocity), ForceMode.Impulse);
 
@@ -39,7 +40,7 @@ public class BulletController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy") && renderer.enabled)
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(new Vector2(0, 5), ForceMode.Impulse);
-            Enemy.LoseLife(damage);
+            collision.gameObject.GetComponent<EnemyController>().LoseLife(damage);
         }
     }
 
