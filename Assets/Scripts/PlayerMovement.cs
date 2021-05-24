@@ -24,10 +24,10 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //Movimiento del jugador//
-        float horitzontal = Input.GetAxis("Horizontal");
+        float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        transform.Translate(new Vector3(horitzontal, 0.0f, vertical) * Time.deltaTime * Speed);
+        transform.Translate(new Vector3(horizontal, 0.0f, vertical) * Time.deltaTime * Speed);
 
         //Salto// 
         if (Input.GetKeyDown(KeyCode.Space))
