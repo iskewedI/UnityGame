@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private float JumpForce = 1.0f;
 
     private Rigidbody Physics;
+    private bool isJumping;
 
     void Start()
     {
@@ -30,9 +31,15 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(new Vector3(horizontal, 0.0f, vertical) * Time.deltaTime * Speed);
 
         //Salto// 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
             Physics.AddForce(new Vector3(0, JumpForce, 0), ForceMode.Impulse);
+            isJumping = true;
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        isJumping = false;
     }
 }
