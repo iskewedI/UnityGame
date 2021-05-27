@@ -16,8 +16,8 @@ public class EnemyController : MonoBehaviour
         life -= damage;
 
         //  if(life == 0)
-        /* Que pasaria si la vida se reduce a -1? El oponente nunca morirÃ­a. 
-        Esta lÃ³gica supone que el dmg va a ser siempre "1", pero si se aÃ±aden fuentes de daÃ±o o se cambia a 3 o mÃ¡s, nunca "life" va a ser igual a 0 y por ende
+        /* Que pasaria si la vida se reduce a -1? El oponente nunca moriría. 
+        Esta lógica supone que el dmg va a ser siempre "1", pero si se añaden fuentes de daño o se cambia a 3 o más, nunca "life" va a ser igual a 0 y por ende
         nunca va a morir (esto teniendo en cuenta que inicia con 10 de vida).
         */
         if (life == 0)
