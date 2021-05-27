@@ -27,7 +27,7 @@ public class BulletController : MonoBehaviour
     public void Shoot(Quaternion rotation)
     {
         renderer.enabled = true;
-        transform.rotation = rotation;
+        //transform.rotation = rotation;
 
         rb.AddForce(new Vector3(0, 0, Velocity), ForceMode.Impulse);
 

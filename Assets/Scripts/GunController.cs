@@ -7,6 +7,8 @@ public class GunController : MonoBehaviour
     [SerializeField]
     private BulletController Bullet;
 
+    public Quaternion direction;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,13 @@ public class GunController : MonoBehaviour
         //Esto iria en PLAYER MOVEMENT 
         if (Input.GetButtonDown("Fire1"))
         {
-            Bullet.Shoot();
+            Bullet.Shoot(direction);
         }
+    }
+   
+    public void SetPosition(Quaternion rotation)
+    {
+        transform.localRotation = Quaternion.AngleAxis(rotation.y, Vector3.right);
+        direction = rotation;
     }
 }

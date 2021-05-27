@@ -5,6 +5,10 @@ using UnityEngine;
 public class PlayerCameraController : MonoBehaviour
 {
     private GameObject Player;
+
+    [SerializeField]
+    private GunController Gun;
+    
     private Vector2 lookingPosition;
     [SerializeField]
     private float Sensitivity = 2f;
@@ -24,5 +28,7 @@ public class PlayerCameraController : MonoBehaviour
 
         transform.localRotation = Quaternion.AngleAxis(lookingPosition.y, Vector3.right);
         Player.transform.localRotation = Quaternion.AngleAxis(lookingPosition.x, Player.transform.up);
+        
+        Gun.SetPosition(transform.rotation);
     }
 }
