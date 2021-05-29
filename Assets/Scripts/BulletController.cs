@@ -12,6 +12,9 @@ public class BulletController : MonoBehaviour
     [SerializeField]
     private float damage = 5f;
 
+    [SerializeField]
+    private Camera camera;
+
     private Rigidbody rb;
     private MeshRenderer renderer;
     private readonly Vector3 offset = new Vector3(0, -0.2319999f, 1.07f);
@@ -24,12 +27,14 @@ public class BulletController : MonoBehaviour
         renderer.enabled = false;
     }
 
-    public void Shoot(Quaternion rotation)
+    public void Shoot()
     {
         renderer.enabled = true;
-        //transform.rotation = rotation;
 
-        rb.AddForce(new Vector3(0, 0, Velocity), ForceMode.Impulse);
+        transform.position = transform.position + camera.transform.forward * 2;
+        rb.velocity = camera.transform.forward * 40;
+
+        rb.AddForce(new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z), ForceMode.Impulse);
 
         //Invokes the function passed as a string after the given amount of seconds
         Invoke("BulletComeback", 1);

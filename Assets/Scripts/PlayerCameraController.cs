@@ -29,6 +29,6 @@ public class PlayerCameraController : MonoBehaviour
         transform.localRotation = Quaternion.AngleAxis(lookingPosition.y, Vector3.right);
         Player.transform.localRotation = Quaternion.AngleAxis(lookingPosition.x, Player.transform.up);
         
-        Gun.SetPosition(transform.rotation);
+        //Gun.SetPosition(transform.rotation);
     }
 }

@@ -40,12 +40,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        /* 
-        isJumping = false;
-        Se deberia agregar un condicional para asegurar que el objeto contra el que colisiona sea de tipo "FLOOR", o algo por el estilo. 
-        Con la lógica actual, si el player colisiona contra un enemigo mientras salta, se va a setear el *isJumping* a **false** y va a poder realizar un doble salto (podría ser
-        una "mecánica" nueva pero debería aclararse).
-        */
-        isJumping = false;
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            isJumping = false;
+        }
     }
 }
