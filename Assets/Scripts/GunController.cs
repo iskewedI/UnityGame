@@ -7,6 +7,9 @@ public class GunController : MonoBehaviour
     [SerializeField]
     private BulletController Bullet;
 
+    [SerializeField]
+    private Camera camera;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,17 +17,8 @@ public class GunController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void PullTrigger()
     {
-        //Esto iria en PLAYER MOVEMENT 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Bullet.Shoot();
-        }
+        Bullet.Shoot(camera.transform.forward);
     }
-   
-    //public void SetPosition(Quaternion rotation)
-    //{
-    //    transform.localRotation = Quaternion.AngleAxis(rotation.y, Vector3.right);
-    //}
 }

@@ -12,9 +12,6 @@ public class BulletController : MonoBehaviour
     [SerializeField]
     private float damage = 5f;
 
-    [SerializeField]
-    private Camera camera;
-
     private Rigidbody rb;
     private MeshRenderer renderer;
     private readonly Vector3 offset = new Vector3(0, -0.2319999f, 1.07f);
@@ -27,12 +24,12 @@ public class BulletController : MonoBehaviour
         renderer.enabled = false;
     }
 
-    public void Shoot()
+    public void Shoot(Vector3 direction)
     {
         renderer.enabled = true;
 
-        transform.position = transform.position + camera.transform.forward * 2;
-        rb.velocity = camera.transform.forward * 40;
+        transform.position = transform.position + direction * 2;
+        rb.velocity = direction * 40;
 
         rb.AddForce(new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z), ForceMode.Impulse);
 

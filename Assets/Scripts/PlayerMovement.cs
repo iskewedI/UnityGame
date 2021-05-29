@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody Physics;
     private bool isJumping;
 
+    [SerializeField]
+    private GunController Gun;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -35,6 +38,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Physics.AddForce(new Vector3(0, JumpForce, 0), ForceMode.Impulse);
             isJumping = true;
+        }
+
+        //Disparo//
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Gun.PullTrigger();
         }
     }
 
