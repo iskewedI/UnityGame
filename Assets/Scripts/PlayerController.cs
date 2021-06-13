@@ -62,7 +62,6 @@ public class PlayerController : MonoBehaviour
 
     private void MoveCharacter(float horizontal, float vertical, float speed)
     {
-        // TODO: probar con valores independientes de la cámara
         Vector3 forward = Camera.main.transform.forward;
         forward.y = 0;
         forward.Normalize(); // Normalize convierte los vectores en vectores unitarios (reduce la magnitud del vector a 1, el dato del sentido es igual)
@@ -77,7 +76,6 @@ public class PlayerController : MonoBehaviour
         /* Me fijo si horizontal o vertical son diferentes a 0, porque si me muevo constantemente en base a esos valores
            va a ocurrir que cuando el jugador deje de moverse, esos valores retornen a cero y mi personaje rote a su posición inicial
            en vez de mantenerse viendo al lado al que apuntó por última vez la caminata indicada por el usuario */
-
         if (horizontal != 0 || vertical != 0)
         {
             // Obtengo el sentido de la rotación de mi personaje en base al input de movimiento recibido por parte del usuario
