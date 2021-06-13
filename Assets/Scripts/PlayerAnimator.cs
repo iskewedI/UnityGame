@@ -21,28 +21,39 @@ public class PlayerAnimator : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            Animator.SetTrigger("Attack");
-            Player.isAttacking = true;
-            // 1 seg despues = attacking = false;
+            AttackProcess();
+
+            // 1er argumento: función a invocar. 2do argumento: segundos a esperar antes de invocar la función
+            Invoke("AttackProcess", 1);
         }
 
         if (Player.IsIdle)
         {
             SpeedPercent = 0;
-            Debug.Log("Player is standing still.");
         }
         else if (!Player.IsRunning)
         {
             SpeedPercent = 0.5f;
-            Debug.Log("Player is walking.");
         }
         else
         {
             SpeedPercent = 1f;
-            Debug.Log("Player is running.");
         }
 
         // Se le asigna el valor de nuestra variable al par�metro del animador, y le a�adimos el resto para que se vea m�s fluido el movimiento.
         Animator.SetFloat("SpeedPercent", SpeedPercent, SmoothAnimation, Time.deltaTime);
+    }
+
+    private void AttackProcess()
+    {
+        if (!Player.IsAttacking)
+        {
+            Animator.SetTrigger("Attack");
+            Player.IsAttacking = true;
+        }
+        else
+        {
+            Player.IsAttacking = false;
+        }
     }
 }

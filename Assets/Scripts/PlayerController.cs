@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public bool IsIdle = true;
     public bool IsRunning => Input.GetKey(KeyCode.LeftShift); // GetKey Pregunta si el bot�n se mantiene presionado
     public bool IsJumping = false;
-    public bool isAttacking = false;
+    public bool IsAttacking = false;
 
     // Start es llamado una �nica vez, al inicio de la ejecuci�n
     private void Start()
