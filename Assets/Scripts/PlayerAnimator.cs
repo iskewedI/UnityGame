@@ -5,9 +5,9 @@ public class PlayerAnimator : MonoBehaviour
     PlayerController Player;
     Animator Animator;
 
-    /* El valor de SpeedPercent determina qué animación se va a mostrar. Están organizadas por un parámetro llamado "SpeedPercent",
+    /* El valor de SpeedPercent determina quï¿½ animaciï¿½n se va a mostrar. Estï¿½n organizadas por un parï¿½metro llamado "SpeedPercent",
     El cual puede tener un valor dentro del rango de 0 y 1f, desde Idle, pasando por Walk, hasta Run. */
-    [SerializeField] private float SpeedPercent = 0; 
+    [SerializeField] private float SpeedPercent = 0;
     [SerializeField] private float SmoothAnimation = 0.1f;
 
     void Start()
@@ -19,6 +19,12 @@ public class PlayerAnimator : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Animator.SetTrigger("Attack");
+            Player.isAttacking = true;
+            // 1 seg despues = attacking = false;
+        }
 
         if (Player.IsIdle)
         {
@@ -36,7 +42,7 @@ public class PlayerAnimator : MonoBehaviour
             Debug.Log("Player is running.");
         }
 
-        // Se le asigna el valor de nuestra variable al parámetro del animador, y le añadimos el resto para que se vea más fluido el movimiento.
-        Animator.SetFloat("SpeedPercent", SpeedPercent, SmoothAnimation, Time.deltaTime); 
+        // Se le asigna el valor de nuestra variable al parï¿½metro del animador, y le aï¿½adimos el resto para que se vea mï¿½s fluido el movimiento.
+        Animator.SetFloat("SpeedPercent", SpeedPercent, SmoothAnimation, Time.deltaTime);
     }
 }

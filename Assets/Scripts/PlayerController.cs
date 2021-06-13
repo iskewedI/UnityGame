@@ -3,19 +3,20 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float MovementNormalizer = 0.025f;
-    [SerializeField] private float WalkingSpeed = 2.4f;
+    [SerializeField] private float WalkingSpeed = 4f;
     [SerializeField] private float RunningSpeed = 4f;
 
 
     [SerializeField] private float JumpForce = 5.6f;
 
     private Rigidbody Rb;
-    // Hice públicos estos campos porque importo el PlayerController en PlayerAnimation y utilizo estos campos ahí
+    // Hice pï¿½blicos estos campos porque importo el PlayerController en PlayerAnimation y utilizo estos campos ahï¿½
     public bool IsIdle = true;
-    public bool IsRunning => Input.GetKey(KeyCode.LeftShift); // GetKey Pregunta si el botón se mantiene presionado
+    public bool IsRunning => Input.GetKey(KeyCode.LeftShift); // GetKey Pregunta si el botï¿½n se mantiene presionado
     public bool IsJumping = false;
+    public bool isAttacking = false;
 
-    // Start es llamado una única vez, al inicio de la ejecución
+    // Start es llamado una ï¿½nica vez, al inicio de la ejecuciï¿½n
     private void Start()
     {
         Rb = GetComponent<Rigidbody>();
@@ -30,18 +31,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // FixedUpdate se ejecuta sincrónicamente con el physics engine, siendo independiente de la cantidad de fps que pueda renderizar el equipo
+    // FixedUpdate se ejecuta sincrï¿½nicamente con el physics engine, siendo independiente de la cantidad de fps que pueda renderizar el equipo
     private void FixedUpdate()
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
         /* Me fijo si horizontal o vertical son diferentes a 0, porque si me muevo constantemente en base a esos valores
-        va a ocurrir que cuando el jugador deje de moverse, esos valores retornen a cero y mi personaje rote a su posición inicial
-        en vez de mantenerse viendo al lado al que apuntó por última vez la caminata indicada por el usuario */
+        va a ocurrir que cuando el jugador deje de moverse, esos valores retornen a cero y mi personaje rote a su posiciï¿½n inicial
+        en vez de mantenerse viendo al lado al que apuntï¿½ por ï¿½ltima vez la caminata indicada por el usuario */
         if (horizontal != 0 || vertical != 0)
         {
-            // Identificamos si el jugador está corriendo, guardamos el hecho en una variable por si la llegaramos a necesitar en otros casos
+            // Identificamos si el jugador estï¿½ corriendo, guardamos el hecho en una variable por si la llegaramos a necesitar en otros casos
             if (IsRunning)
             {
                 MoveCharacter(horizontal * Time.deltaTime, vertical * Time.deltaTime, RunningSpeed);
@@ -69,13 +70,13 @@ public class PlayerController : MonoBehaviour
         right.y = 0;
         right.Normalize();
 
-        // Se mueve el personaje en la dirección y velocidad indicadas
+        // Se mueve el personaje en la direcciï¿½n y velocidad indicadas
         transform.position += horizontal * speed * right + vertical * speed * forward;
 
-        // Obtengo el sentido de la rotación de mi personaje en base al input de movimiento recibido por parte del usuario
+        // Obtengo el sentido de la rotaciï¿½n de mi personaje en base al input de movimiento recibido por parte del usuario
         Vector3 lookRotation = new Vector3(horizontal, 0, vertical);
 
-        // Cambio la rotación en base al dato anterior, de la manera más "smooth" posible (tiene que haber una mejor forma de hacerlo)
+        // Cambio la rotaciï¿½n en base al dato anterior, de la manera mï¿½s "smooth" posible (tiene que haber una mejor forma de hacerlo)
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookRotation.normalized), MovementNormalizer);
     }
 
