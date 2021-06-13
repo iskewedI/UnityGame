@@ -449,6 +449,7 @@ GameObject:
   - component: {fileID: 320354473}
   - component: {fileID: 320354472}
   - component: {fileID: 320354476}
+  - component: {fileID: 320354477}
   m_Layer: 0
   m_Name: Obstacle 2
   m_TagString: Enemy
@@ -546,6 +547,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 3
+--- !u!54 &320354477
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320354471}
+  serializedVersion: 2
+  m_Mass: 1000
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &730899587
 GameObject:
   m_ObjectHideFlags: 3
@@ -1287,7 +1304,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585968906}
-  m_LocalRotation: {x: 0.22217873, y: 0.000000016776324, z: -0.000000003822892, w: 0.975006}
+  m_LocalRotation: {x: 0.22217873, y: -0.000000016776326, z: 0.0000000038228922, w: 0.975006}
   m_LocalPosition: {x: 0, y: 5, z: -9.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1330,7 +1347,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2010332901}
-  m_LocalRotation: {x: 0.22217871, y: 0.000000008388161, z: -0.0000000019114457, w: 0.975006}
+  m_LocalRotation: {x: 0.22217871, y: -0.000000008388163, z: 0.0000000019114461, w: 0.975006}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1896,6 +1913,7 @@ GameObject:
   - component: {fileID: 615682184195296774}
   - component: {fileID: 615682184193102024}
   - component: {fileID: 615682184193102023}
+  - component: {fileID: 615682184193102025}
   m_Layer: 0
   m_Name: RightSword
   m_TagString: Untagged
@@ -1916,6 +1934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponDamage: 1
+  playerController: {fileID: 4110279262656209751}
 --- !u!65 &615682184193102024
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1927,8 +1946,24 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.11641234, y: 1.0087988, z: 0.077641994}
-  m_Center: {x: -0.010973697, y: 0.7171918, z: -0.0015618738}
+  m_Size: {x: 0.116412446, y: 1.035179, z: 0.077641994}
+  m_Center: {x: -0.010973769, y: 0.7303818, z: -0.0015618999}
+--- !u!54 &615682184193102025
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615682184193102022}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!33 &615682184194165958
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2820,9 +2855,9 @@ GameObject:
   m_Component:
   - component: {fileID: 515654033448412779}
   - component: {fileID: 7600748082806676709}
-  - component: {fileID: 4110279262656209751}
   - component: {fileID: 4110279262656209752}
   - component: {fileID: 4110279262656209753}
+  - component: {fileID: 4110279262656209751}
   - component: {fileID: 4110279262656209754}
   m_Layer: 0
   m_Name: SwordWarrior
@@ -2849,6 +2884,7 @@ MonoBehaviour:
   JumpForce: 6
   IsIdle: 1
   IsJumping: 0
+  isAttacking: 0
 --- !u!54 &4110279262656209752
 Rigidbody:
   m_ObjectHideFlags: 0
