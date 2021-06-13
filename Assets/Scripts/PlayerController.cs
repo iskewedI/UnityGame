@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float JumpForce = 5.6f;
 
     private Rigidbody Rb;
+    // Hice públicos estos campos porque importo el PlayerController en PlayerAnimation y utilizo estos campos ahí
     public bool IsIdle = true;
     public bool IsRunning => Input.GetKey(KeyCode.LeftShift); // GetKey Pregunta si el botón se mantiene presionado
     public bool IsJumping = false;
