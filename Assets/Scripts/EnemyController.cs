@@ -1,16 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
     private int life = 3;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
+    public bool IsDead = false;
 
     // Update is called once per frame
     void Update()
@@ -18,6 +13,8 @@ public class EnemyController : MonoBehaviour
         if (life <= 0)
         {
             Debug.Log("Dead");
+            IsDead = true;
+
             Destroy(this.gameObject, 100);
         }
     }
