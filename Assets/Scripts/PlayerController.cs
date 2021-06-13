@@ -2,20 +2,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private float MovementNormalizer = 0.025f;
-    [SerializeField]
-    private float WalkingSpeed = 2.4f;
-    [SerializeField]
-    private float RunningSpeed = 4f;
-    [SerializeField]
-    private bool IsRunning = false;
+    [SerializeField] private float MovementNormalizer = 0.025f;
+    [SerializeField] private float WalkingSpeed = 2.4f;
+    [SerializeField] private float RunningSpeed = 4f;
 
-    [SerializeField]
-    private float JumpForce = 5.6f;
+
+    [SerializeField] private float JumpForce = 5.6f;
 
     private Rigidbody Rb;
-    private bool IsJumping = false;
+    public bool IsIdle = true;
+    public bool IsRunning => Input.GetKey(KeyCode.LeftShift); // GetKey Pregunta si el botón se mantiene presionado
+    public bool IsJumping = false;
 
     // Start es llamado una única vez, al inicio de la ejecución
     private void Start()
@@ -26,16 +23,6 @@ public class PlayerController : MonoBehaviour
     // Update es llamado una vez por frame, de forma continua
     void Update()
     {
-        // GetKey pregunta si el botón se mantiene presionado
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            IsRunning = true;
-        }
-        else
-        {
-            IsRunning = false;
-        }
-
         if (Input.GetButton("Jump") && !IsJumping)
         {
             Jump();
@@ -48,16 +35,27 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        // Identificamos si el jugador está corriendo, guardamos el hecho en una variable por si la llegaramos a necesitar en otros casos
-        if (IsRunning)
+        /* Me fijo si horizontal o vertical son diferentes a 0, porque si me muevo constantemente en base a esos valores
+        va a ocurrir que cuando el jugador deje de moverse, esos valores retornen a cero y mi personaje rote a su posición inicial
+        en vez de mantenerse viendo al lado al que apuntó por última vez la caminata indicada por el usuario */
+        if (horizontal != 0 || vertical != 0)
         {
-            MoveCharacter(horizontal * Time.deltaTime, vertical * Time.deltaTime, RunningSpeed);
+            // Identificamos si el jugador está corriendo, guardamos el hecho en una variable por si la llegaramos a necesitar en otros casos
+            if (IsRunning)
+            {
+                MoveCharacter(horizontal * Time.deltaTime, vertical * Time.deltaTime, RunningSpeed);
+                IsIdle = false;
+            }
+            else
+            {
+                MoveCharacter(horizontal * Time.deltaTime, vertical * Time.deltaTime, WalkingSpeed);
+                IsIdle = false;
+            }
         }
         else
         {
-            MoveCharacter(horizontal * Time.deltaTime, vertical * Time.deltaTime, WalkingSpeed);
+            IsIdle = true;
         }
-
     }
 
     private void MoveCharacter(float horizontal, float vertical, float speed)
@@ -73,17 +71,11 @@ public class PlayerController : MonoBehaviour
         // Se mueve el personaje en la dirección y velocidad indicadas
         transform.position += horizontal * speed * right + vertical * speed * forward;
 
-        /* Me fijo si horizontal o vertical son diferentes a 0, porque si me muevo constantemente en base a esos valores
-           va a ocurrir que cuando el jugador deje de moverse, esos valores retornen a cero y mi personaje rote a su posición inicial
-           en vez de mantenerse viendo al lado al que apuntó por última vez la caminata indicada por el usuario */
-        if (horizontal != 0 || vertical != 0)
-        {
-            // Obtengo el sentido de la rotación de mi personaje en base al input de movimiento recibido por parte del usuario
-            Vector3 lookRotation = new Vector3(horizontal, 0, vertical);
+        // Obtengo el sentido de la rotación de mi personaje en base al input de movimiento recibido por parte del usuario
+        Vector3 lookRotation = new Vector3(horizontal, 0, vertical);
 
-            // Cambio la rotación en base al dato anterior, de la manera más "smooth" posible (tiene que haber una mejor forma de hacerlo)
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookRotation.normalized), MovementNormalizer);
-        }
+        // Cambio la rotación en base al dato anterior, de la manera más "smooth" posible (tiene que haber una mejor forma de hacerlo)
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookRotation.normalized), MovementNormalizer);
     }
 
     private void Jump()
