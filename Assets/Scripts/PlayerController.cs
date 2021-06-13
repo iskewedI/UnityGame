@@ -3,13 +3,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
+    private float MovementNormalizer = 0.025f;
+    [SerializeField]
     private float WalkingSpeed = 2.4f;
     [SerializeField]
     private float RunningSpeed = 4f;
     [SerializeField]
-    private float JumpForce = 5.6f;
+    private bool IsRunning = false;
+
     [SerializeField]
-    private float MovementNormalizer = 0.025f;
+    private float JumpForce = 5.6f;
 
     private Rigidbody Rb;
     private bool IsJumping = false;
@@ -23,6 +26,16 @@ public class PlayerController : MonoBehaviour
     // Update es llamado una vez por frame, de forma continua
     void Update()
     {
+        // GetKey pregunta si el botón se mantiene presionado
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            IsRunning = true;
+        }
+        else
+        {
+            IsRunning = false;
+        }
+
         if (Input.GetButton("Jump") && !IsJumping)
         {
             Jump();
@@ -35,27 +48,24 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        /* TODO: intenté implementar que si se presiona el left shift, que el personaje corriera, me parece que tengo que especificar que tienen que presionarse
-                 tanto el left shift como los botones de direccionamiento. Me parece que lo que ocurre es que espera a que solo se presione el left shift para
-                 activarse, pero si el left shift se presiona sólo, los valores de vertical y horizontal son 0, por lo que no habría nada de movimiento */
+        // Identificamos si el jugador está corriendo, guardamos el hecho en una variable por si la llegaramos a necesitar en otros casos
+        if (IsRunning)
+        {
+            MoveCharacter(horizontal * Time.deltaTime, vertical * Time.deltaTime, RunningSpeed);
+        }
+        else
+        {
+            MoveCharacter(horizontal * Time.deltaTime, vertical * Time.deltaTime, WalkingSpeed);
+        }
 
-        //if (Input.GetKeyDown(KeyCode.LeftControl))
-        //{
-        //    MoveCharacter(Input.GetAxis("Horizontal") * Time.deltaTime, Input.GetAxis("Vertical") * Time.deltaTime, RunningSpeed);
-        //}
-
-        MoveCharacter(horizontal * Time.deltaTime, vertical * Time.deltaTime, WalkingSpeed);
     }
 
     private void MoveCharacter(float horizontal, float vertical, float speed)
     {
-        /* TODO: Normalize hace que un vector tenga distancia de 1, manteniendo su mismo sentido de dirección
-           (se supone facilita los cálculos con vectores, investigar qué tan cierto es eso en Unity) */
-
         // TODO: probar con valores independientes de la cámara
         Vector3 forward = Camera.main.transform.forward;
         forward.y = 0;
-        forward.Normalize();
+        forward.Normalize(); // Normalize convierte los vectores en vectores unitarios (reduce la magnitud del vector a 1, el dato del sentido es igual)
 
         Vector3 right = Camera.main.transform.right;
         right.y = 0;

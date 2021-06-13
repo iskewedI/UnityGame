@@ -147,7 +147,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2206679}
-  m_LocalRotation: {x: 0.23987682, y: 0.000000016704012, z: -0.000000004127411, w: 0.9708034}
+  m_LocalRotation: {x: 0.23987682, y: -0.000000016704012, z: 0.000000004127411, w: 0.9708034}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -668,7 +668,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 763033374}
-  m_LocalRotation: {x: 0.20445411, y: -0.000000016842922, z: 0.0000000035179162, w: 0.9788762}
+  m_LocalRotation: {x: 0.20445412, y: 0.000000016842913, z: -0.0000000035179148, w: 0.9788762}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2652,10 +2652,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a800f0424d55d884dabaa70896a9f131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkingSpeed: 2.4
-  RunningSpeed: 6.4
-  JumpForce: 6
   MovementNormalizer: 0.025
+  WalkingSpeed: 2.4
+  RunningSpeed: 12
+  IsRunning: 0
+  JumpForce: 6
 --- !u!54 &4110279262656209752
 Rigidbody:
   m_ObjectHideFlags: 0
