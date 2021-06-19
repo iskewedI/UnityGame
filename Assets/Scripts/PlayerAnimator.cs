@@ -21,10 +21,9 @@ public class PlayerAnimator : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            AttackProcess();
-
-            // 1er argumento: función a invocar. 2do argumento: segundos a esperar antes de invocar la función
-            Invoke("AttackProcess", 1);
+            Animator.SetTrigger("Attack");
+            Player.isAttacking = true;
+            // 1 seg despues = attacking = false;
         }
 
         SetAnimations();
@@ -60,18 +59,5 @@ public class PlayerAnimator : MonoBehaviour
         SpeedPercent = new Vector2(horizontal, vertical).sqrMagnitude;
 
         Animator.SetFloat("SpeedPercent", SpeedPercent, 0.0f, Time.deltaTime);
-    }
-
-    private void AttackProcess()
-    {
-        if (!Player.IsAttacking)
-        {
-            Animator.SetTrigger("Attack");
-            Player.IsAttacking = true;
-        }
-        else
-        {
-            Player.IsAttacking = false;
-        }
     }
 }

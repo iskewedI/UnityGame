@@ -4,32 +4,34 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    [SerializeField] private int WeaponDamage = 1;
-
-    private PlayerController PlayerController;
-
-    private bool IsCollisioning = false;
-    
-    private void Start()
+    [SerializeField]
+    private int WeaponDamage = 1;
+    [SerializeField]
+    private PlayerController playerController;
+    // Start is called before the first frame update
+    void Start()
     {
-        PlayerController = GetComponentInParent<PlayerController>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!IsCollisioning)
-        {
-            IsCollisioning = true;
+        // if(!collisioning){
 
-            if (collision.gameObject.CompareTag("Enemy") && PlayerController.IsAttacking)
-            {
-                EnemyController controller = collision.gameObject.GetComponent<EnemyController>();
-                controller.TakeDamage(WeaponDamage);
-            }
+        // }
+        if (collision.gameObject.CompareTag("Enemy") && playerController.isAttacking)
+        {
+            EnemyController controller = collision.gameObject.GetComponent<EnemyController>();
+            controller.TakeDamage(WeaponDamage);
         }
     }
-    private void OnCollisionExit()
+    void OnCollisionExit()
     {
-        IsCollisioning = false;
+        // collisioning = false;
     }
 }
