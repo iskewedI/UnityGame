@@ -191,7 +191,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 0
-    m_SensorSize: {x: 2.0063593, y: 1}
+    m_SensorSize: {x: 0.810089, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -757,7 +757,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 0
-    m_SensorSize: {x: 2.0063593, y: 1}
+    m_SensorSize: {x: 0.810089, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1219,7 +1219,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585968906}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
@@ -1347,7 +1347,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2010332901}
-  m_LocalRotation: {x: 0.22217871, y: 0.000000008388161, z: -0.0000000019114457, w: 0.975006}
+  m_LocalRotation: {x: 0.22217871, y: -0.000000008388163, z: 0.0000000019114461, w: 0.975006}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1391,7 +1391,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 0
-    m_SensorSize: {x: 2.0063593, y: 1}
+    m_SensorSize: {x: 0.810089, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1648,7 +1648,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2123763928}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 319d2fe34a804e245819465c9505ea59, type: 3}
   m_Name: 
@@ -1671,7 +1671,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 0
-    m_SensorSize: {x: 2.0063593, y: 1}
+    m_SensorSize: {x: 0.810089, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2859,6 +2859,7 @@ GameObject:
   - component: {fileID: 4110279262656209752}
   - component: {fileID: 4110279262656209751}
   - component: {fileID: 4110279262656209754}
+  - component: {fileID: 4110279262656209755}
   m_Layer: 0
   m_Name: SwordWarrior
   m_TagString: Untagged
@@ -2897,7 +2898,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 1.5
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -2913,10 +2914,10 @@ BoxCollider:
   m_GameObject: {fileID: 4110279262656209750}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.5, y: 1.9, z: 0.33}
-  m_Center: {x: 0, y: 0.94, z: -0.01}
+  m_Center: {x: 0, y: 0.954, z: -0.01}
 --- !u!114 &4110279262656209754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2931,6 +2932,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpeedPercent: 0
   SmoothAnimation: 0.1
+--- !u!54 &4110279262656209755
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4110279262656209750}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!4 &4184005807431777811
 Transform:
   m_ObjectHideFlags: 0

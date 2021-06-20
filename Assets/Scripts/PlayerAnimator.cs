@@ -56,7 +56,7 @@ public class PlayerAnimator : MonoBehaviour
         Animator.SetFloat("InputHorizontal", horizontal, 0.0f, Time.deltaTime * 2f);
         Animator.SetFloat("InputVertical", vertical, 0.0f, Time.deltaTime * 2f);
 
-        SpeedPercent = new Vector2(horizontal, vertical).sqrMagnitude;
+        SpeedPercent = new Vector2(horizontal, vertical).sqrMagnitude; 
 
         Animator.SetFloat("SpeedPercent", SpeedPercent, 0.0f, Time.deltaTime);
     }
